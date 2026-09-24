@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gopal Pujari — Azure Data Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#12151a; --surface:#181c23; --border:#282e38;
+    --text:#eceff3; --text-dim:#97a1ad; --text-faint:#5c6672;
+    --bronze:#b8733d; --silver:#9aa5b1; --gold:#c9a227;
+    --azure:#5a9bc2;
+    --serif:'Newsreader',Georgia,serif;
+    --sans:'IBM Plex Sans',system-ui,sans-serif;
+    --mono:'IBM Plex Mono',Menlo,monospace;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0; background:var(--bg); color:var(--text);
+    font-family:var(--sans); font-size:16px; line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:var(--azure); text-decoration:none;}
+  a:hover{text-decoration:underline;}
+  a:focus-visible, button:focus-visible{outline:2px solid var(--azure); outline-offset:3px;}
+
+  .wrap{max-width:740px; margin:0 auto; padding:0 24px;}
+
+  /* ---- Hero ---- */
+  header.hero{padding:96px 0 56px;}
+  .band{display:flex; height:6px; width:96px; border-radius:2px; overflow:hidden; margin-bottom:32px;}
+  .band span{flex:1;}
+  .band .b1{background:var(--bronze);}
+  .band .b2{background:var(--silver);}
+  .band .b3{background:var(--gold);}
+  h1{
+    font-family:var(--serif); font-weight:500; font-size:clamp(2.4rem,6vw,3.4rem);
+    line-height:1.08; margin:0 0 8px; letter-spacing:-0.01em;
+  }
+  .role{
+    font-family:var(--mono); font-size:0.95rem; color:var(--text-dim);
+    margin:0 0 28px;
+  }
+  .role .sep{color:var(--text-faint); margin:0 10px;}
+  .summary{
+    font-size:1.06rem; color:var(--text-dim); max-width:58ch;
+    margin:0 0 32px;
+  }
+  .contact-row{
+    display:flex; flex-wrap:wrap; gap:20px; font-family:var(--mono);
+    font-size:0.88rem;
+  }
+  .contact-row a{color:var(--text);}
+  .contact-row a:hover{color:var(--azure);}
+
+  /* ---- Section scaffolding ---- */
+  section{padding:52px 0; border-top:1px solid var(--border);}
+  .section-head{
+    display:flex; align-items:baseline; gap:14px; margin-bottom:32px;
+  }
+  .section-head h2{
+    font-family:var(--serif); font-weight:500; font-size:1.5rem; margin:0;
+  }
+  .section-head .idx{font-family:var(--mono); color:var(--text-faint); font-size:0.85rem;}
+
+  p{color:var(--text-dim); margin:0 0 14px;}
+
+  /* ---- Experience timeline ---- */
+  .role-block{
+    position:relative; padding-left:26px; border-left:1px solid var(--border);
+    margin-bottom:44px;
+  }
+  .role-block:last-child{margin-bottom:0;}
+  .role-block::before{
+    content:''; position:absolute; left:-4.5px; top:6px;
+    width:8px; height:8px; border-radius:50%; background:var(--bronze);
+  }
+  .role-meta{
+    display:flex; flex-wrap:wrap; align-items:baseline; gap:10px 14px;
+    margin-bottom:4px;
+  }
+  .company{font-family:var(--serif); font-size:1.2rem; font-weight:500; color:var(--text);}
+  .dates{font-family:var(--mono); font-size:0.82rem; color:var(--text-faint);}
+  .title-line{color:var(--text-dim); font-size:0.95rem; margin-bottom:2px;}
+  .project-tag{
+    font-family:var(--mono); font-size:0.8rem; color:var(--gold);
+    margin-bottom:14px; display:inline-block;
+  }
+  ul.bullets{margin:0; padding-left:19px;}
+  ul.bullets li{color:var(--text-dim); margin-bottom:8px; font-size:0.97rem;}
+  ul.bullets li::marker{color:var(--text-faint);}
+  ul.bullets b, ul.bullets strong{color:var(--text); font-weight:600;}
+
+  /* ---- Projects ---- */
+  .project-card{
+    border:1px solid var(--border); border-radius:6px; padding:22px 24px;
+    background:var(--surface);
+  }
+  .project-card h3{
+    font-family:var(--serif); font-weight:500; font-size:1.15rem; margin:0 0 2px;
+  }
+  .project-stack{font-family:var(--mono); font-size:0.8rem; color:var(--silver); margin-bottom:12px;}
+
+  /* ---- Skills ---- */
+  .skill-grid{display:grid; grid-template-columns:1fr; gap:18px;}
+  .skill-row{
+    display:grid; grid-template-columns:150px 1fr; gap:16px; align-items:baseline;
+  }
+  .skill-label{font-family:var(--mono); font-size:0.82rem; color:var(--text-faint);}
+  .skill-values{color:var(--text-dim); font-size:0.95rem;}
+  @media(max-width:560px){
+    .skill-row{grid-template-columns:1fr; gap:4px;}
+  }
+
+  /* ---- Education / footer ---- */
+  .edu-row{display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px;}
+  .edu-degree{font-family:var(--serif); font-size:1.1rem; color:var(--text);}
+  .edu-year{font-family:var(--mono); font-size:0.82rem; color:var(--text-faint);}
+
+  footer{
+    padding:56px 0 80px; border-top:1px solid var(--border);
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:16px;
+    font-family:var(--mono); font-size:0.82rem; color:var(--text-faint);
+  }
+  footer a{color:var(--text-dim);}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header class="hero">
+    <div class="band"><span class="b1"></span><span class="b2"></span><span class="b3"></span></div>
+    <h1>Gopal Pujari</h1>
+    <p class="role">Azure Data Engineer <span class="sep">·</span> Bangalore, India <span class="sep">·</span> 4.6 yrs experience</p>
+    <p class="summary">
+      I build production-grade ETL and ELT pipelines on Azure — Data Factory, Databricks, and Delta Lake —
+      across e-commerce, healthcare, construction finance, and energy. Most of my work lives in the
+      Bronze–Silver–Gold Medallion pattern: getting raw, inconsistent data into something a business can trust.
+    </p>
+    <div class="contact-row">
+      <a href="mailto:gopalpujari.de@gmail.com">gopalpujari.de@gmail.com</a>
+      <a href="tel:+919032891455">+91 90328 91455</a>
+      <a href="https://www.linkedin.com/in/gopal-pujari-4a9936436/" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+  </header>
+
+  <section id="experience">
+    <div class="section-head"><span class="idx">01</span><h2>Experience</h2></div>
+
+    <div class="role-block">
+      <div class="role-meta"><span class="company">Flipkart</span><span class="dates">Feb 2026 — Present</span></div>
+      <div class="title-line">Azure Data Engineer · Bangalore, India</div>
+      <span class="project-tag">E-Commerce · Client: E-Kart Logistics</span>
+      <ul class="bullets">
+        <li>Architect metadata-driven ETL pipelines in <b>Azure Data Factory</b>, ingesting data from enterprise databases, REST APIs, and flat files into <b>ADLS Gen2</b>.</li>
+        <li>Design <b>PySpark</b> notebooks in <b>Azure Databricks</b> (Unity Catalog-governed) to cleanse and transform high-volume transactional and customer datasets.</li>
+        <li>Implement Bronze-Silver-Gold Medallion architecture on <b>Delta Lake</b>, with watermark-based incremental loading and MERGE operations.</li>
+        <li>Optimize Spark workloads through partitioning, caching, and broadcast joins to improve pipeline throughput.</li>
+        <li>Own CI/CD delivery for data workflows via <b>Azure DevOps</b> and Git, including secrets management through <b>Azure Key Vault</b>.</li>
+        <li>Mentor junior engineers through code review and pair programming on PySpark and ADF best practices.</li>
+      </ul>
+    </div>
+
+    <div class="role-block">
+      <div class="role-meta"><span class="company">DEC Industries Pvt Ltd</span><span class="dates">Apr 2025 — Feb 2026</span></div>
+      <div class="title-line">Data Engineer · Hyderabad, India</div>
+      <span class="project-tag">Construction Finance Management System · Client: NDRS</span>
+      <ul class="bullets">
+        <li>Engineered and maintained ETL pipelines across finance, construction, and operational source systems.</li>
+        <li>Automated job scheduling and dependency management for batch and near-real-time processing.</li>
+        <li>Implemented error handling, retry logic, and alerting to improve pipeline reliability and fault tolerance.</li>
+        <li>Established end-to-end monitoring with <b>Azure Monitor</b> and custom dashboards for pipeline health.</li>
+      </ul>
+    </div>
+
+    <div class="role-block">
+      <div class="role-meta"><span class="company">Tech Mahindra</span><span class="dates">Jul 2024 — Apr 2025</span></div>
+      <div class="title-line">Data Engineer · Bengaluru, India</div>
+      <span class="project-tag">Healthcare Data Modernization · Client: HCI Group</span>
+      <ul class="bullets">
+        <li>Built ETL pipelines with <b>Azure Data Factory</b> and <b>Databricks</b> to integrate claims, hospital, and patient data.</li>
+        <li>Developed PySpark and SQL solutions focused on <b>HIPAA-compliant</b> data handling and secure access via Key Vault.</li>
+        <li>Automated claims processing and patient analytics workflows, easing manual processing effort.</li>
+        <li>Migrated legacy healthcare workloads to Azure, improving reliability and infrastructure efficiency.</li>
+      </ul>
+    </div>
+
+    <div class="role-block">
+      <div class="role-meta"><span class="company">Wipro Ltd.</span><span class="dates">Jan 2022 — Jul 2024</span></div>
+      <div class="title-line">Project Engineer · Bangalore, India</div>
+      <span class="project-tag">Gridstar — Smart Energy & Grid Financial Solutions · Client: Hitachi Energy</span>
+      <ul class="bullets">
+        <li>Developed ETL pipelines using Python, SQL, and ADF to move grid and cost data from SFTP and SQL Server into ADLS Gen2.</li>
+        <li>Built PySpark transformations in Databricks integrating construction finance and grid data for cost forecasting.</li>
+        <li>Standardized multi-format raw data (CSV, JSON) into optimized Delta Lake tables for faster analytical queries.</li>
+        <li>Delivered integrated grid and financial datasets supporting data-driven resource allocation.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="section-head"><span class="idx">02</span><h2>Projects</h2></div>
+    <div class="project-card">
+      <h3>Medallion Architecture Pipeline</h3>
+      <div class="project-stack">Databricks · Unity Catalog · Delta Lake</div>
+      <p>
+        End-to-end Bronze–Silver–Gold pipeline built on a relational sales dataset (the classicModels schema) under
+        Unity Catalog governance — resolving schema mismatches, type errors, and CSV parsing issues on ingestion.
+      </p>
+      <p style="margin-bottom:0;">
+        Used <span style="color:var(--text)">DROP TABLE IF EXISTS</span> patterns to manage schema evolution across
+        Delta tables, validating each medallion layer for quality and consistency through to analytics-ready gold tables.
+      </p>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="section-head"><span class="idx">03</span><h2>Skills</h2></div>
+    <div class="skill-grid">
+      <div class="skill-row"><span class="skill-label">Programming</span><span class="skill-values">Python, SQL</span></div>
+      <div class="skill-row"><span class="skill-label">Big Data</span><span class="skill-values">Apache Spark, PySpark, Spark SQL, Delta Lake</span></div>
+      <div class="skill-row"><span class="skill-label">Modeling</span><span class="skill-values">Dimensional modeling, Medallion architecture (Bronze/Silver/Gold), Azure SQL Data Warehouse</span></div>
+      <div class="skill-row"><span class="skill-label">Orchestration</span><span class="skill-values">Azure Data Factory — pipelines, linked services, datasets, triggers</span></div>
+      <div class="skill-row"><span class="skill-label">Azure Cloud</span><span class="skill-values">Databricks, Unity Catalog, ADLS Gen2, Blob Storage, Azure SQL Database, Key Vault, Azure Monitor</span></div>
+      <div class="skill-row"><span class="skill-label">Databases</span><span class="skill-values">MS SQL Server, MySQL</span></div>
+      <div class="skill-row"><span class="skill-label">File Formats</span><span class="skill-values">Parquet, Avro, JSON, CSV, Delta</span></div>
+      <div class="skill-row"><span class="skill-label">DevOps</span><span class="skill-values">Git, GitHub, Azure DevOps, CI/CD, JIRA, PyCharm, VS Code, Jupyter</span></div>
+      <div class="skill-row"><span class="skill-label">Reporting</span><span class="skill-values">Power BI</span></div>
+    </div>
+  </section>
+
+  <section id="education">
+    <div class="section-head"><span class="idx">04</span><h2>Education</h2></div>
+    <div class="edu-row">
+      <span class="edu-degree">Bachelor of Technology</span>
+      <span class="edu-year">Jawaharlal Nehru Technological University, Andhra Pradesh · Jul 2021</span>
+    </div>
+  </section>
+
+  <footer>
+    <span>Gopal Pujari — Azure Data Engineer</span>
+    <span><a href="mailto:gopalpujari.de@gmail.com">Get in touch</a></span>
+  </footer>
+</div>
+
+</body>
+</html>
